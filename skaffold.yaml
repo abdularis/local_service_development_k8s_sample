@@ -1,0 +1,16 @@
+apiVersion: skaffold/v4beta6
+kind: Config
+metadata:
+  name: local-service-development-k8s-sample
+build:
+  artifacts:
+    - image: my-server-image
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - deployment.yaml
+portForward:
+  - resourceType: service
+    resourceName: my-server
+    port: 8080
